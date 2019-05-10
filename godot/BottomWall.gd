@@ -10,12 +10,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
-	#var player = get_node("/root/MainScreen/Player")
-	
-	#player.hide()
 #	pass
 
-func _on_StaticObstacle_body_entered(body):
+func _on_BottomWall_body_entered(body):
 	if body.is_in_group("Player"):
 		var player = body
-		player.lose()
+		player.win()
