@@ -1,11 +1,10 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Node2D.gd" type="Script" id=1]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://StaticObstacle.tscn" type="PackedScene" id=3]
-[ext_resource path="res://SideWall.tscn" type="PackedScene" id=4]
-[ext_resource path="res://BottomWall.gd" type="Script" id=5]
-[ext_resource path="res://MovingAbstacle.tscn" type="PackedScene" id=6]
+[ext_resource path="res://SideWall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://components/CollisionTrigger.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Birb.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 600, 1 )
@@ -19,35 +18,25 @@ __meta__ = {
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 204, 1 )
 
-[node name="StaticObstacle" parent="." instance=ExtResource( 3 )]
-position = Vector2( 241, 232 )
+[node name="LeftWall" parent="." instance=ExtResource( 3 )]
 
-[node name="StaticObstacle2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 436, 272 )
-
-[node name="StaticObstacle3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 107, 137 )
-
-[node name="LeftWall" parent="." instance=ExtResource( 4 )]
-
-[node name="RightWall" parent="." instance=ExtResource( 4 )]
+[node name="RightWall" parent="." instance=ExtResource( 3 )]
 position = Vector2( 600, 0 )
 
 [node name="BottomWall" type="Area2D" parent="."]
 editor/display_folded = true
-script = ExtResource( 5 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
 visible = false
 position = Vector2( 0, 800 )
 shape = SubResource( 1 )
 
-[node name="MovingObstacle" parent="." instance=ExtResource( 6 )]
-position = Vector2( 206, 342 )
+[node name="CollisionTrigger" parent="BottomWall" instance=ExtResource( 4 )]
+trigger_group = "Player"
+method_name = "win"
 
-[node name="MovingObstacle2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 180, 538 )
+[node name="Birb" parent="." instance=ExtResource( 5 )]
+position = Vector2( 180.428, 366.585 )
 
-[node name="MovingObstacle3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 281, 460 )
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 [connection signal="body_entered" from="BottomWall" to="BottomWall" method="_on_BottomWall_body_entered"]

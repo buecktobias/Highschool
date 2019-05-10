@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/FX loop bee_01.wav-bb82fe6d7e4c3107314ad53963a7e0b0.sample"
+
+[deps]
+
+source_file="res://snd/FX/FX loop bee_01.wav"
+dest_files=[ "res://.import/FX loop bee_01.wav-bb82fe6d7e4c3107314ad53963a7e0b0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

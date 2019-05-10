@@ -4,7 +4,7 @@ extends KinematicBody2D
 # var a = 2
 # var b = "text"
 var x_speed = 500
-var gravity = 100
+var y_max_speed = 100
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -19,7 +19,7 @@ func win():
 	
 func movement():
 	var movement = Vector2()
-	movement.y += gravity
+	movement.y += y_max_speed
 	if Input.is_action_pressed("ui_left"):
 		movement.x -= x_speed
 	elif Input.is_action_pressed("ui_right"):

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Music sting lose_01.wav-a03f285ea42313f1468de4b9a25e926d.sample"
+
+[deps]
+
+source_file="res://snd/Music/Music sting lose_01.wav"
+dest_files=[ "res://.import/Music sting lose_01.wav-a03f285ea42313f1468de4b9a25e926d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
