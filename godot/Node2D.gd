@@ -8,6 +8,8 @@ extends Node2D
 const RANDOM_WALL = preload("res://RandomWall.tscn")
 const BIRD = preload("res://Birb.tscn")
 const BEE = preload("res://Bee.tscn")
+const DRONE = preload("res://Drone.tscn")
+
 export (NodePath) var player_path
 const ELEMENTS = [RANDOM_WALL, BEE, BIRD]
 const SCREEN_WIDTH = 600

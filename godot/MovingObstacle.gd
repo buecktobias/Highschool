@@ -5,9 +5,12 @@ enum DIRECTION {LEFT, RIGHT}
 export (float) var min_speed = 50
 export (float) var max_speed = 250
 var speed
-export (DIRECTION) var direction = DIRECTION.RIGHT
+var direction
 var player
 func _ready():
+	var directions = [DIRECTION.LEFT, DIRECTION.RIGHT]
+	var random = int(round(rand_range(0,1)))
+	direction = directions[random]
 	speed = rand_range(min_speed, max_speed)
 	if direction == DIRECTION.LEFT:
 		scale.x = -4
