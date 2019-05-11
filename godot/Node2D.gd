@@ -9,24 +9,57 @@ const RANDOM_WALL = preload("res://RandomWall.tscn")
 const BIRD = preload("res://Birb.tscn")
 const BEE = preload("res://Bee.tscn")
 export (NodePath) var player_path
-const ELEMENTS = [RANDOM_WALL, RANDOM_WALL, RANDOM_WALL, BIRD, BIRD, BEE, BEE]
+const ELEMENTS = [RANDOM_WALL, BEE, BIRD]
 const SCREEN_WIDTH = 600
 const GAP_BETWEEN_STAGES = 200
 const LEVEL_SIZE = 100_000
 
-var last_player_position_obstacle_added_y
+var last_player_position_obstacle_added_y = -800
 var player
 var position_last_obstacle_placed_y
+func random_element(list_of_chances):
+	assert len(ELEMENTS) == len(list_of_chances)
+	var elements_for_random = []
+	for i in range(len(list_of_chances)):
+		var chance = list_of_chances[i]
+		var element = ELEMENTS[i]
+		for j in range(chance):
+			elements_for_random.append(element)
+	return elements_for_random[int(round(rand_range(0, len(elements_for_random)-1)))]
+
+
+func sum(list):
+	var sum = 0
+	for num in list:
+		sum += num
+	return sum
+	
+func calculate_chances(y_position):
+	print("y_position " + str(y_position))
+	var smaller_y = (y_position + 500) / 1_000
+	
+	var elements_num = []
+	for i in range(len(ELEMENTS)):
+		var power = i + 1
+		var num = pow(smaller_y, power)
+		elements_num.append(num)
+	var sum_elemts_num = sum(elements_num)
+	var chances = []
+	for num in elements_num:
+		chances.append(int(round(100 * (num / sum_elemts_num))))
+	return chances
+
+
 func create_random_element(y):
 		var x = int(round(rand_range(0,SCREEN_WIDTH)))
-		var random_element = ELEMENTS[round(rand_range(0,len(ELEMENTS)-1))]
+		var random_element = random_element(calculate_chances(player.position.y))
 		var object = random_element.instance()
 		object.player = player
 		object.position.x = x
 		object.position.y = y
 		self.add_child(object)
 		position_last_obstacle_placed_y = y
-		last_player_position_obstacle_added_y = player.position.y
+		last_player_position_obstacle_added_y += GAP_BETWEEN_STAGES
 func _ready():
 	randomize()
 	player = get_node(player_path)
@@ -37,7 +70,7 @@ func _ready():
 		create_random_element(y)
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if player.position.y + GAP_BETWEEN_STAGES > last_player_position_obstacle_added_y:
+	if player.position.y - GAP_BETWEEN_STAGES > last_player_position_obstacle_added_y:
 		create_random_element(position_last_obstacle_placed_y + GAP_BETWEEN_STAGES)
 		
 
