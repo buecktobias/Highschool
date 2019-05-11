@@ -16,6 +16,7 @@ func _ready():
 func _on_Player_lose():
 	$LoseTimer.wait_time = 1
 	$LoseTimer.start()
+	$AudioStreamPlayer.stop()
 
 
 func _on_Player_win():
