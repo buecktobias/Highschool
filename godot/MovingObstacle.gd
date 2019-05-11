@@ -8,9 +8,7 @@ export (DIRECTION) var direction = DIRECTION.RIGHT
 func _ready():
 	if direction == DIRECTION.LEFT:
 		scale.x = -4
-		
-	
-	
+
 func _process(delta):
 	match direction:
 		DIRECTION.LEFT:

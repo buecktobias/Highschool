@@ -14,14 +14,16 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.	
 const DEATH_EFFECT = preload("res://PlayerDeath.tscn")
 
-func lose():
+func lose(killer):
 	#get_tree().change_scene("LoseScreen.tscn")
 	emit_signal("lose")
 	hide()
 	_is_dead = true
-	ScreenEffects.shake(10, 1.0, true)
+	ScreenEffects.shake(15, 1.0, true)
 	var d = DEATH_EFFECT.instance()
 	d.position = position
+	if killer.position.x > position.x:
+		d.scale.x = -1
 	get_parent().add_child(d)
 
 func win():

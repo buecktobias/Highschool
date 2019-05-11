@@ -12,3 +12,4 @@ visible = false
 [node name="CollisionTrigger" parent="." instance=ExtResource( 2 )]
 trigger_group = "Player"
 method_name = "lose"
+pass_self = true

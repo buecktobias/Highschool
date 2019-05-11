@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ScrollerScratchpad.gd" type="Script" id=1]
 [ext_resource path="res://snd/FX/High School Gameplay music.wav" type="AudioStream" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://Birb.tscn" type="PackedScene" id=6]
 [ext_resource path="res://MainCamera.tscn" type="PackedScene" id=7]
 [ext_resource path="res://BasicBlock.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Bee.tscn" type="PackedScene" id=9]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 600, 1 )
@@ -40,7 +41,7 @@ method_name = "win"
 position = Vector2( 438, -173 )
 
 [node name="Bird" parent="." instance=ExtResource( 6 )]
-position = Vector2( 70, 50 )
+position = Vector2( 407.352, 161.587 )
 direction = 0
 
 [node name="MainCamera" parent="." instance=ExtResource( 7 )]
@@ -50,40 +51,43 @@ player_path = NodePath("../../ScrollerScratchpad/Player")
 [node name="LoseTimer" type="Timer" parent="."]
 
 [node name="BasicBlock" parent="." instance=ExtResource( 8 )]
-position = Vector2( 40, -14 )
+position = Vector2( 33.3518, 94.5873 )
 
 [node name="BasicBlock5" parent="." instance=ExtResource( 8 )]
-position = Vector2( 160, -14 )
+position = Vector2( 153.352, 94.5873 )
 
 [node name="BasicBlock9" parent="." instance=ExtResource( 8 )]
-position = Vector2( 250, -50 )
+position = Vector2( 243.352, 58.5873 )
 
 [node name="BasicBlock3" parent="." instance=ExtResource( 8 )]
-position = Vector2( 100, -14 )
+position = Vector2( 93.3518, 94.5873 )
 
 [node name="BasicBlock8" parent="." instance=ExtResource( 8 )]
-position = Vector2( 220, -14 )
+position = Vector2( 213.352, 94.5873 )
 
 [node name="BasicBlock12" parent="." instance=ExtResource( 8 )]
-position = Vector2( 310, -50 )
+position = Vector2( 303.352, 58.5873 )
 
 [node name="BasicBlock2" parent="." instance=ExtResource( 8 )]
-position = Vector2( 70, -14 )
+position = Vector2( 63.3518, 94.5873 )
 
 [node name="BasicBlock6" parent="." instance=ExtResource( 8 )]
-position = Vector2( 190, -14 )
+position = Vector2( 183.352, 94.5873 )
 
 [node name="BasicBlock10" parent="." instance=ExtResource( 8 )]
-position = Vector2( 280, -50 )
+position = Vector2( 273.352, 58.5873 )
 
 [node name="BasicBlock4" parent="." instance=ExtResource( 8 )]
-position = Vector2( 130, -14 )
+position = Vector2( 123.352, 94.5873 )
 
 [node name="BasicBlock7" parent="." instance=ExtResource( 8 )]
-position = Vector2( 250, -14 )
+position = Vector2( 243.352, 94.5873 )
 
 [node name="BasicBlock11" parent="." instance=ExtResource( 8 )]
-position = Vector2( 340, -50 )
+position = Vector2( 333.352, 58.5873 )
+
+[node name="Bee" parent="." instance=ExtResource( 9 )]
+position = Vector2( 177.227, 252.526 )
 [connection signal="lose" from="Player" to="." method="_on_Player_lose"]
 [connection signal="win" from="Player" to="." method="_on_Player_win"]
 [connection signal="timeout" from="LoseTimer" to="." method="_on_Timer_timeout"]

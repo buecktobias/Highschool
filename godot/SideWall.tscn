@@ -13,3 +13,4 @@ shape = SubResource( 1 )
 [node name="CollisionTrigger" parent="." instance=ExtResource( 1 )]
 trigger_group = "Player"
 method_name = "lose"
+pass_self = true
