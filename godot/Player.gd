@@ -1,31 +1,39 @@
 extends KinematicBody2D
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+signal win
+signal lose
+
 var x_speed = 500
 var y_max_speed = 100
-# Called when the node enters the scene tree for the first time.
+var _is_dead = false
+
 func _ready():
 	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.	
+const DEATH_EFFECT = preload("res://PlayerDeath.tscn")
 
 func lose():
-	get_tree().change_scene("LoseScreen.tscn")
+	#get_tree().change_scene("LoseScreen.tscn")
+	emit_signal("lose")
+	hide()
+	_is_dead = true
+	ScreenEffects.shake(10, 1.0, true)
+	var d = DEATH_EFFECT.instance()
+	d.position = position
+	get_parent().add_child(d)
 
 func win():
-	get_tree().change_scene("WinScreen.tscn")
-	
-func movement():
-	var movement = Vector2()
-	movement.y += y_max_speed
-	if Input.is_action_pressed("ui_left"):
-		movement.x -= x_speed
-	elif Input.is_action_pressed("ui_right"):
-		movement.x += x_speed
-	move_and_slide(movement)
-		
+	#get_tree().change_scene("WinScreen.tscn")
+	emit_signal("win")
+
 func _process(delta):
-	movement()
+	if not _is_dead:
+		var movement = Vector2()
+		movement.y += y_max_speed
+		if Input.is_action_pressed("ui_left"):
+			movement.x -= x_speed
+		elif Input.is_action_pressed("ui_right"):
+			movement.x += x_speed
+		move_and_slide(movement)
 	

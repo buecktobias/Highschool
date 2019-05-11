@@ -1,0 +1,9 @@
+[gd_scene format=2]
+
+[node name="PlayerDeath" type="CPUParticles2D"]
+amount = 10
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 10.0
+scale_amount = 4.0
+color = Color( 1, 0, 0, 1 )
