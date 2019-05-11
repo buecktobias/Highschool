@@ -36,6 +36,7 @@ method_name = "win"
 
 [node name="Bird" parent="." instance=ExtResource( 4 )]
 position = Vector2( 173.428, 388.585 )
+direction = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )

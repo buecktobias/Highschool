@@ -6,7 +6,9 @@ export (float) var speed = 100
 export (DIRECTION) var direction = DIRECTION.RIGHT
 
 func _ready():
-	pass
+	if direction == DIRECTION.LEFT:
+		scale.x = -4
+		
 	
 	
 func _process(delta):
