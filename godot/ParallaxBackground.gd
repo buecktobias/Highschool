@@ -10,4 +10,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	offset.y = 880*floor(camera.position.y/8800)
+	offset.y = 778.81*floor(camera.position.y/7788.1)
