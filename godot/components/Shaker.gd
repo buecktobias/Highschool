@@ -24,9 +24,9 @@ func _physics_process(delta):
 	
 	if is_shaking:
 		if _bi_shake:
-			_affected_node.position = .707*(rand_range(-2, 2)*_intensity*Vector2(1, 0) + rand_range(-2, 2)*_intensity*Vector2(0, 1))
+			_affected_node.position = .707*(rand_range(-2.0, 2.0)*_intensity*Vector2(1.0, 0) + rand_range(-2.0, 2.0)*_intensity*Vector2(0, 1.0))
 		else:
-			_affected_node.position = rand_range(-2, 2)*_intensity*_dir
+			_affected_node.position = rand_range(-2.0, 2.0)*_intensity*_dir
 		remaining_time -= delta
 		if remaining_time <= 0:
 			is_shaking = false
@@ -42,8 +42,9 @@ func shake(intensity, duration, damped = false, dir = null):
 		_bi_shake = false
 		_dir = dir.normalized()
 	if damped:
-		$Tween.interpolate_property(self, "_intensity", intensity, 0, duration, Tween.TRANS_CUBIC, Tween.EASE_OUT)
+		_intensity = float(intensity)
+		$Tween.interpolate_property(self, "_intensity", float(intensity), 0, duration, Tween.TRANS_CUBIC, Tween.EASE_OUT)
 		$Tween.start()
 	else:
-		_intensity = intensity
+		_intensity = float(intensity)
 	remaining_time = duration
