@@ -5,7 +5,7 @@ signal lose
 
 var x_speed = 500
 var y_speed = 80
-var y_acceleration = 2
+var y_acceleration = 4
 var _is_dead = false
 
 func _ready():

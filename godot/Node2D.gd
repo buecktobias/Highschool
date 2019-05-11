@@ -5,10 +5,10 @@ extends Node2D
 # var b = "text"
 
 # Called when the node enters the scene tree for the first time.
-
 const RANDOM_WALL = preload("res://RandomWall.tscn")
 const BIRD = preload("res://Birb.tscn")
-const ELEMENTS = [RANDOM_WALL, BIRD]
+const BEE = preload("res://Bee.tscn")
+const ELEMENTS = [RANDOM_WALL, RANDOM_WALL, RANDOM_WALL, BIRD, BIRD, BEE, BEE]
 const SCREEN_WIDTH = 600
 const GAP_BETWEEN_STAGES = 200
 const LEVEL_SIZE = 100_000
