@@ -11,9 +11,11 @@ const BIRD = preload("res://Birb.tscn")
 const ELEMENTS = [RANDOM_WALL, BIRD]
 const SCREEN_WIDTH = 600
 const GAP_BETWEEN_STAGES = 200
-const LEVEL_SIZE = 1_000
+const LEVEL_SIZE = 100_000
 func _ready():
-	print("test")
+	var screen_width = OS.get_screen_size(OS.get_current_screen()).x
+	var window_width = OS.get_window_size().x
+	OS.set_window_position(Vector2((screen_width / 2) - (window_width / 2),0))
 	for y in range(0, LEVEL_SIZE, GAP_BETWEEN_STAGES):
 		var x = int(round(rand_range(0,SCREEN_WIDTH)))
 		var random_element = ELEMENTS[round(rand_range(0,len(ELEMENTS)-1))]
@@ -21,9 +23,21 @@ func _ready():
 		object.position.x = x
 		object.position.y = y
 		self.add_child(object)
-		print(y)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Player_lose():
+	$LoseTimer.wait_time = 1
+	$LoseTimer.start()
+
+
+func _on_Player_win():
+	get_tree().change_scene("WinScreen.tscn")
+
+
+func _on_LoseTimer_timeout():
+	get_tree().change_scene("LoseScreen.tscn")

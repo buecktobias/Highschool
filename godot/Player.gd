@@ -4,7 +4,8 @@ signal win
 signal lose
 
 var x_speed = 500
-var y_max_speed = 100
+var y_speed = 80
+var y_acceleration = 2
 var _is_dead = false
 
 func _ready():
@@ -28,9 +29,10 @@ func win():
 	emit_signal("win")
 
 func _process(delta):
+	y_speed += delta *  y_acceleration
 	if not _is_dead:
 		var movement = Vector2()
-		movement.y += y_max_speed
+		movement.y += y_speed
 		if Input.is_action_pressed("ui_left"):
 			movement.x -= x_speed
 		elif Input.is_action_pressed("ui_right"):
