@@ -18,3 +18,4 @@ hue_variation_random = 1.0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
+autoplay = true
