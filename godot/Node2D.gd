@@ -35,7 +35,6 @@ func sum(list):
 	return sum
 	
 func calculate_chances(y_position):
-	print("y_position " + str(y_position))
 	var smaller_y = (y_position + 500) / 1_000
 	
 	var elements_num = []

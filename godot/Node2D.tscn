@@ -26,7 +26,7 @@ player_path = NodePath("../Player")
 score_path = NodePath("../Score")
 
 [node name="Player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 438, -301.67 )
+position = Vector2( 438, -300 )
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 5 )]
 camera_path = NodePath("../MainCamera")
