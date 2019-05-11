@@ -2,7 +2,7 @@ extends Area2D
 
 enum DIRECTION {LEFT, RIGHT}
 
-export (float) var speed = 200
+export (float) var speed = 100
 export (DIRECTION) var direction = DIRECTION.RIGHT
 
 func _ready():

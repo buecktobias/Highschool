@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Node2D.gd" type="Script" id=1]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://SideWall.tscn" type="PackedScene" id=3]
-[ext_resource path="res://components/CollisionTrigger.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Birb.tscn" type="PackedScene" id=5]
-[ext_resource path="res://snd/FX/High School Gameplay music.wav" type="AudioStream" id=6]
-[ext_resource path="res://BasicBlock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://SideWall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://components/CollisionTrigger.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Birb.tscn" type="PackedScene" id=4]
+[ext_resource path="res://snd/FX/High School Gameplay music.wav" type="AudioStream" id=5]
+[ext_resource path="res://BasicBlock.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 600, 1 )
@@ -17,12 +17,9 @@ __meta__ = {
 "_edit_horizontal_guides_": [  ]
 }
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 550, 20 )
+[node name="LeftWall" parent="." instance=ExtResource( 2 )]
 
-[node name="LeftWall" parent="." instance=ExtResource( 3 )]
-
-[node name="RightWall" parent="." instance=ExtResource( 3 )]
+[node name="RightWall" parent="." instance=ExtResource( 2 )]
 position = Vector2( 600, 0 )
 
 [node name="BottomWall" type="Area2D" parent="."]
@@ -33,47 +30,83 @@ visible = false
 position = Vector2( 0, 800 )
 shape = SubResource( 1 )
 
-[node name="CollisionTrigger" parent="BottomWall" instance=ExtResource( 4 )]
+[node name="CollisionTrigger" parent="BottomWall" instance=ExtResource( 3 )]
 trigger_group = "Player"
 method_name = "win"
 
-[node name="Birb" parent="." instance=ExtResource( 5 )]
-position = Vector2( 180.428, 366.585 )
+[node name="Bird" parent="." instance=ExtResource( 4 )]
+position = Vector2( 173.428, 388.585 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 5 )
 autoplay = true
 
-[node name="BasicBlock" parent="." instance=ExtResource( 7 )]
+[node name="BasicBlock" parent="." instance=ExtResource( 6 )]
 position = Vector2( 20, 230 )
 
-[node name="BasicBlock6" parent="." instance=ExtResource( 7 )]
+[node name="BasicBlock12" parent="." instance=ExtResource( 6 )]
+position = Vector2( 373, 677 )
+
+[node name="BasicBlock6" parent="." instance=ExtResource( 6 )]
 position = Vector2( 140, 230 )
 
-[node name="BasicBlock2" parent="." instance=ExtResource( 7 )]
+[node name="BasicBlock22" parent="." instance=ExtResource( 6 )]
+position = Vector2( 493, 677 )
+
+[node name="BasicBlock2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 50, 230 )
 
-[node name="BasicBlock7" parent="." instance=ExtResource( 7 )]
+[node name="BasicBlock18" parent="." instance=ExtResource( 6 )]
+position = Vector2( 403, 677 )
+
+[node name="BasicBlock7" parent="." instance=ExtResource( 6 )]
 position = Vector2( 170, 230 )
 
-[node name="BasicBlock3" parent="." instance=ExtResource( 7 )]
+[node name="BasicBlock20" parent="." instance=ExtResource( 6 )]
+position = Vector2( 523, 677 )
+
+[node name="BasicBlock3" parent="." instance=ExtResource( 6 )]
 position = Vector2( 80, 230 )
 
-[node name="BasicBlock5" parent="." instance=ExtResource( 7 )]
+[node name="BasicBlock21" parent="." instance=ExtResource( 6 )]
+position = Vector2( 433, 677 )
+
+[node name="BasicBlock5" parent="." instance=ExtResource( 6 )]
 position = Vector2( 200, 230 )
 
-[node name="BasicBlock4" parent="." instance=ExtResource( 7 )]
+[node name="BasicBlock13" parent="." instance=ExtResource( 6 )]
+position = Vector2( 553, 677 )
+
+[node name="BasicBlock4" parent="." instance=ExtResource( 6 )]
 position = Vector2( 110, 230 )
 
-[node name="BasicBlock8" parent="." instance=ExtResource( 7 )]
+[node name="BasicBlock14" parent="." instance=ExtResource( 6 )]
+position = Vector2( 463, 677 )
+
+[node name="BasicBlock8" parent="." instance=ExtResource( 6 )]
 position = Vector2( 230, 230 )
 
-[node name="BasicBlock11" parent="." instance=ExtResource( 7 )]
+[node name="BasicBlock15" parent="." instance=ExtResource( 6 )]
+position = Vector2( 583, 677 )
+
+[node name="BasicBlock11" parent="." instance=ExtResource( 6 )]
 position = Vector2( 230, 170 )
 
-[node name="BasicBlock9" parent="." instance=ExtResource( 7 )]
+[node name="BasicBlock16" parent="." instance=ExtResource( 6 )]
+position = Vector2( 583, 617 )
+
+[node name="BasicBlock9" parent="." instance=ExtResource( 6 )]
 position = Vector2( 230, 200 )
 
-[node name="BasicBlock10" parent="." instance=ExtResource( 7 )]
+[node name="BasicBlock17" parent="." instance=ExtResource( 6 )]
+position = Vector2( 583, 647 )
+
+[node name="BasicBlock10" parent="." instance=ExtResource( 6 )]
 position = Vector2( 230, 140 )
+
+[node name="BasicBlock19" parent="." instance=ExtResource( 6 )]
+position = Vector2( 583, 587 )
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
+position = Vector2( 438, -173 )
 [connection signal="body_entered" from="BottomWall" to="BottomWall" method="_on_BottomWall_body_entered"]
