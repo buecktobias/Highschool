@@ -1,11 +1,14 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Node2D.gd" type="Script" id=1]
 [ext_resource path="res://snd/FX/High School Gameplay music.wav" type="AudioStream" id=2]
 [ext_resource path="res://MainCamera.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://ParallaxBackground.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Score.gd" type="Script" id=6]
+[ext_resource path="res://components/DiscreteHealthBar.tscn" type="PackedScene" id=4]
+[ext_resource path="res://img/Can_of_Beans_01_active.png" type="Texture" id=5]
+[ext_resource path="res://img/Can_of_Beans_01_inactive.png" type="Texture" id=6]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ParallaxBackground.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Score.gd" type="Script" id=9]
 
 [node name="MainScreen" type="Node2D"]
 script = ExtResource( 1 )
@@ -16,6 +19,7 @@ player_path = NodePath("Player")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
+volume_db = -15.0
 autoplay = true
 
 [node name="LoseTimer" type="Timer" parent="."]
@@ -25,10 +29,52 @@ position = Vector2( 300, 0 )
 player_path = NodePath("../Player")
 score_path = NodePath("../Score")
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="DiscreteHealthBar" parent="MainCamera" instance=ExtResource( 4 )]
+position = Vector2( -250, 325 )
+subject = NodePath("../../Player")
+filled_element = NodePath("Filled")
+empty_element = NodePath("Empty")
+init_signal = "jumpsh_init"
+update_signal = "jumps_update"
+element_offset = 50.0
+
+[node name="ColorRect" type="ColorRect" parent="MainCamera/DiscreteHealthBar"]
+margin_left = -23.0
+margin_top = -27.0
+margin_right = 23.0
+margin_bottom = 27.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Filled2" type="Sprite" parent="MainCamera/DiscreteHealthBar"]
+scale = Vector2( 3, 3 )
+texture = ExtResource( 5 )
+
+[node name="ColorRect2" type="ColorRect" parent="MainCamera/DiscreteHealthBar"]
+margin_left = 27.0
+margin_top = -27.0
+margin_right = 73.0
+margin_bottom = 27.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="Filled3" type="Sprite" parent="MainCamera/DiscreteHealthBar"]
+position = Vector2( 50, 0 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 5 )
+
+[node name="Filled" type="Sprite" parent="MainCamera/DiscreteHealthBar"]
+visible = false
+scale = Vector2( 3, 3 )
+texture = ExtResource( 5 )
+
+[node name="Empty" type="Sprite" parent="MainCamera/DiscreteHealthBar"]
+visible = false
+scale = Vector2( 3, 3 )
+texture = ExtResource( 6 )
+
+[node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 438, -300 )
 
-[node name="ParallaxBackground" parent="." instance=ExtResource( 5 )]
+[node name="ParallaxBackground" parent="." instance=ExtResource( 8 )]
 camera_path = NodePath("../MainCamera")
 
 [node name="Score" type="RichTextLabel" parent="."]
@@ -38,7 +84,7 @@ margin_right = 585.0
 margin_bottom = -335.0
 rect_min_size = Vector2( 570, 50 )
 bbcode_enabled = true
-script = ExtResource( 6 )
+script = ExtResource( 9 )
 player_path = NodePath("../Player")
 [connection signal="timeout" from="LoseTimer" to="." method="_on_LoseTimer_timeout"]
 [connection signal="lose" from="Player" to="." method="_on_Player_lose"]

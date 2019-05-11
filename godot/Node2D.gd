@@ -9,9 +9,12 @@ const RANDOM_WALL = preload("res://RandomWall.tscn")
 const BIRD = preload("res://Birb.tscn")
 const BEE = preload("res://Bee.tscn")
 const DRONE = preload("res://Drone.tscn")
+const PENGUIN = preload("res://Penguin.tscn")
+
+const BEANS = preload("res://CanOfBeans.tscn")
 
 export (NodePath) var player_path
-const ELEMENTS = [RANDOM_WALL, BEE, BIRD]
+const ELEMENTS = [RANDOM_WALL, BEE, BIRD, DRONE, PENGUIN]
 const SCREEN_WIDTH = 600
 const GAP_BETWEEN_STAGES = 200
 const LEVEL_SIZE = 100_000
@@ -55,6 +58,12 @@ func calculate_chances(y_position):
 func create_random_element(y):
 		var x = int(round(rand_range(0,SCREEN_WIDTH)))
 		var random_element = random_element(calculate_chances(player.position.y))
+		if randi()%100 < 50:
+			var beans = BEANS.instance()
+			beans.player = player
+			beans.position.x = int(floor(x+300))%SCREEN_WIDTH
+			beans.position.y = y + GAP_BETWEEN_STAGES/2
+			self.add_child(beans)
 		var object = random_element.instance()
 		object.player = player
 		object.position.x = x
@@ -70,6 +79,7 @@ func _ready():
 	OS.set_window_position(Vector2((screen_width / 2) - (window_width / 2),0))
 	for y in range(0, GAP_BETWEEN_STAGES * 5, GAP_BETWEEN_STAGES):
 		create_random_element(y)
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if player.position.y - GAP_BETWEEN_STAGES > last_player_position_obstacle_added_y:

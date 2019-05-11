@@ -43,5 +43,5 @@ anims/std = SubResource( 2 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
 stream = ExtResource( 3 )
-volume_db = -30.0
+volume_db = -45.0
 autoplay = true
