@@ -1,10 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://MovingObstacle.tscn" type="PackedScene" id=1]
-[ext_resource path="res://img/Bird.png" type="Texture" id=2]
+[ext_resource path="res://img/Bird_01.png" type="Texture" id=2]
+[ext_resource path="res://BirdAudio.gd" type="Script" id=3]
+[ext_resource path="res://snd/FX/Birdcall1_01.wav" type="AudioStream" id=4]
+[ext_resource path="res://snd/FX/Birdcall2_01.wav" type="AudioStream" id=5]
+[ext_resource path="res://snd/FX/Birdcall 3_01.wav" type="AudioStream" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14, 10 )
+extents = Vector2( 14, 8 )
 
 [sub_resource type="Animation" id=2]
 length = 0.4
@@ -24,7 +28,7 @@ tracks/0/keys = {
 }
 
 [node name="Bird" instance=ExtResource( 1 )]
-scale = Vector2( 4, 4 )
+scale = Vector2( 3, 3 )
 min_speed = 100.0
 max_speed = 200.0
 
@@ -33,10 +37,24 @@ visible = true
 shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
+position = Vector2( 1, 0 )
 texture = ExtResource( 2 )
-hframes = 2
+vframes = 2
 frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 autoplay = "std"
 anims/std = SubResource( 2 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+volume_db = -10.0
+script = ExtResource( 3 )
+sample0 = ExtResource( 4 )
+sample1 = ExtResource( 5 )
+sample2 = ExtResource( 6 )
+
+[node name="Timer" type="Timer" parent="AudioStreamPlayer" index="0"]
+wait_time = 2.0
+one_shot = true
+autostart = true
+[connection signal="timeout" from="AudioStreamPlayer/Timer" to="AudioStreamPlayer" method="_on_Timer_timeout"]

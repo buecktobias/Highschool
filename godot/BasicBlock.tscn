@@ -7,7 +7,7 @@
 extents = Vector2( 4, 4 )
 
 [node name="BasicBlock" instance=ExtResource( 1 )]
-scale = Vector2( 4, 4 )
+scale = Vector2( 3, 3 )
 
 [node name="CollisionShape2D" parent="." index="0"]
 shape = SubResource( 1 )

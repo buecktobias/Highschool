@@ -1,13 +1,15 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ScrollerScratchpad.gd" type="Script" id=1]
 [ext_resource path="res://snd/FX/High School Gameplay music.wav" type="AudioStream" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Birb.tscn" type="PackedScene" id=4]
 [ext_resource path="res://MainCamera.tscn" type="PackedScene" id=5]
-[ext_resource path="res://BasicBlock.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Bee.tscn" type="PackedScene" id=7]
-[ext_resource path="res://ParallaxBackground.tscn" type="PackedScene" id=8]
+[ext_resource path="res://components/DiscreteHealthBar.tscn" type="PackedScene" id=6]
+[ext_resource path="res://BasicBlock.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Bee.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ParallaxBackground.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Drone.tscn" type="PackedScene" id=10]
 
 [node name="ScrollerScratchpad" type="Node2D"]
 script = ExtResource( 1 )
@@ -27,49 +29,76 @@ direction = 0
 position = Vector2( 300, 0 )
 player_path = NodePath("../../ScrollerScratchpad/Player")
 
+[node name="DiscreteHealthBar" parent="MainCamera" instance=ExtResource( 6 )]
+position = Vector2( -250, 300 )
+subject = NodePath("../../Player")
+filled_element = NodePath("Filled")
+empty_element = NodePath("Empty")
+init_signal = "jumps_init"
+update_signal = "jumps_update"
+
+[node name="Filled" type="Node2D" parent="MainCamera/DiscreteHealthBar"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="MainCamera/DiscreteHealthBar/Filled"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.619608, 0.129412, 0, 1 )
+
+[node name="Empty" type="Node2D" parent="MainCamera/DiscreteHealthBar"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="MainCamera/DiscreteHealthBar/Empty"]
+margin_right = 40.0
+margin_bottom = 40.0
+color = Color( 0.333333, 0.333333, 0.333333, 1 )
+
 [node name="LoseTimer" type="Timer" parent="."]
 
-[node name="BasicBlock" parent="." instance=ExtResource( 6 )]
+[node name="BasicBlock" parent="." instance=ExtResource( 7 )]
 position = Vector2( 33.3518, 94.5873 )
 
-[node name="BasicBlock5" parent="." instance=ExtResource( 6 )]
+[node name="BasicBlock5" parent="." instance=ExtResource( 7 )]
 position = Vector2( 153.352, 94.5873 )
 
-[node name="BasicBlock9" parent="." instance=ExtResource( 6 )]
-position = Vector2( 243.352, 58.5873 )
+[node name="BasicBlock16" parent="." instance=ExtResource( 7 )]
+position = Vector2( 470, 510 )
 
-[node name="BasicBlock3" parent="." instance=ExtResource( 6 )]
+[node name="BasicBlock3" parent="." instance=ExtResource( 7 )]
 position = Vector2( 93.3518, 94.5873 )
 
-[node name="BasicBlock8" parent="." instance=ExtResource( 6 )]
-position = Vector2( 213.352, 94.5873 )
+[node name="BasicBlock24" parent="." instance=ExtResource( 7 )]
+position = Vector2( 440, 546 )
 
-[node name="BasicBlock12" parent="." instance=ExtResource( 6 )]
-position = Vector2( 303.352, 58.5873 )
+[node name="BasicBlock13" parent="." instance=ExtResource( 7 )]
+position = Vector2( 530, 510 )
 
-[node name="BasicBlock2" parent="." instance=ExtResource( 6 )]
+[node name="BasicBlock2" parent="." instance=ExtResource( 7 )]
 position = Vector2( 63.3518, 94.5873 )
 
-[node name="BasicBlock6" parent="." instance=ExtResource( 6 )]
-position = Vector2( 183.352, 94.5873 )
+[node name="BasicBlock17" parent="." instance=ExtResource( 7 )]
+position = Vector2( 410, 546 )
 
-[node name="BasicBlock10" parent="." instance=ExtResource( 6 )]
-position = Vector2( 273.352, 58.5873 )
+[node name="BasicBlock22" parent="." instance=ExtResource( 7 )]
+position = Vector2( 500, 510 )
 
-[node name="BasicBlock4" parent="." instance=ExtResource( 6 )]
+[node name="BasicBlock4" parent="." instance=ExtResource( 7 )]
 position = Vector2( 123.352, 94.5873 )
 
-[node name="BasicBlock7" parent="." instance=ExtResource( 6 )]
-position = Vector2( 243.352, 94.5873 )
+[node name="BasicBlock14" parent="." instance=ExtResource( 7 )]
+position = Vector2( 470, 546 )
 
-[node name="BasicBlock11" parent="." instance=ExtResource( 6 )]
-position = Vector2( 333.352, 58.5873 )
+[node name="BasicBlock15" parent="." instance=ExtResource( 7 )]
+position = Vector2( 560, 510 )
 
-[node name="Bee" parent="." instance=ExtResource( 7 )]
+[node name="Bee" parent="." instance=ExtResource( 8 )]
 position = Vector2( 177.227, 252.526 )
 
-[node name="ParallaxBackground" parent="." instance=ExtResource( 8 )]
+[node name="ParallaxBackground" parent="." instance=ExtResource( 9 )]
 camera_path = NodePath("../MainCamera")
+
+[node name="StaticObstacle" parent="." instance=ExtResource( 10 )]
+position = Vector2( 450, 402 )
 [connection signal="lose" from="Player" to="." method="_on_Player_lose"]
 [connection signal="win" from="Player" to="." method="_on_Player_win"]
 [connection signal="timeout" from="LoseTimer" to="." method="_on_Timer_timeout"]
