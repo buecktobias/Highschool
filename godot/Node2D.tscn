@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Node2D.gd" type="Script" id=1]
-[ext_resource path="res://Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://SideWall.tscn" type="PackedScene" id=3]
-[ext_resource path="res://components/CollisionTrigger.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Birb.tscn" type="PackedScene" id=5]
+[ext_resource path="res://SideWall.tscn" type="PackedScene" id=2]
+[ext_resource path="res://components/CollisionTrigger.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Birb.tscn" type="PackedScene" id=4]
+[ext_resource path="res://snd/FX/High School Gameplay music.wav" type="AudioStream" id=5]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=6]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 600, 1 )
@@ -15,12 +16,9 @@ __meta__ = {
 "_edit_horizontal_guides_": [  ]
 }
 
-[node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 204, 1 )
+[node name="LeftWall" parent="." instance=ExtResource( 2 )]
 
-[node name="LeftWall" parent="." instance=ExtResource( 3 )]
-
-[node name="RightWall" parent="." instance=ExtResource( 3 )]
+[node name="RightWall" parent="." instance=ExtResource( 2 )]
 position = Vector2( 600, 0 )
 
 [node name="BottomWall" type="Area2D" parent="."]
@@ -31,12 +29,40 @@ visible = false
 position = Vector2( 0, 800 )
 shape = SubResource( 1 )
 
-[node name="CollisionTrigger" parent="BottomWall" instance=ExtResource( 4 )]
+[node name="CollisionTrigger" parent="BottomWall" instance=ExtResource( 3 )]
 trigger_group = "Player"
 method_name = "win"
 
-[node name="Birb" parent="." instance=ExtResource( 5 )]
-position = Vector2( 180.428, 366.585 )
+[node name="Bird" parent="." instance=ExtResource( 4 )]
+position = Vector2( -167.289, 256.641 )
+direction = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="Player" parent="." instance=ExtResource( 6 )]
+position = Vector2( 438, -173 )
 [connection signal="body_entered" from="BottomWall" to="BottomWall" method="_on_BottomWall_body_entered"]
+[connection signal="body_entered" from="BasicBlock" to="BasicBlock" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock12" to="BasicBlock12" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock6" to="BasicBlock6" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock22" to="BasicBlock22" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock2" to="BasicBlock2" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock18" to="BasicBlock18" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock7" to="BasicBlock7" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock20" to="BasicBlock20" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock3" to="BasicBlock3" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock21" to="BasicBlock21" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock5" to="BasicBlock5" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock13" to="BasicBlock13" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock4" to="BasicBlock4" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock14" to="BasicBlock14" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock8" to="BasicBlock8" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock15" to="BasicBlock15" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock11" to="BasicBlock11" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock16" to="BasicBlock16" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock9" to="BasicBlock9" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock17" to="BasicBlock17" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock10" to="BasicBlock10" method="_on_StaticObstacle_body_entered"]
+[connection signal="body_entered" from="BasicBlock19" to="BasicBlock19" method="_on_StaticObstacle_body_entered"]

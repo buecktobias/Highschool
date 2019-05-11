@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/High School Menu Music.wav-0a6f8a8c8b93f6011b4656403cd897cb.sample"
+
+[deps]
+
+source_file="res://snd/FX/High School Menu Music.wav"
+dest_files=[ "res://.import/High School Menu Music.wav-0a6f8a8c8b93f6011b4656403cd897cb.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

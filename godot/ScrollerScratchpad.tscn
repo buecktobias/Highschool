@@ -1,0 +1,89 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://ScrollerScratchpad.gd" type="Script" id=1]
+[ext_resource path="res://snd/FX/High School Gameplay music.wav" type="AudioStream" id=2]
+[ext_resource path="res://SideWall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://components/CollisionTrigger.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Birb.tscn" type="PackedScene" id=6]
+[ext_resource path="res://MainCamera.tscn" type="PackedScene" id=7]
+[ext_resource path="res://BasicBlock.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 600, 1 )
+
+[node name="ScrollerScratchpad" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+autoplay = true
+
+[node name="LeftWall" parent="." instance=ExtResource( 3 )]
+
+[node name="RightWall" parent="." instance=ExtResource( 3 )]
+position = Vector2( 600, 0 )
+
+[node name="BottomWall" type="Area2D" parent="."]
+editor/display_folded = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+visible = false
+position = Vector2( 0, 800 )
+shape = SubResource( 1 )
+
+[node name="CollisionTrigger" parent="BottomWall" instance=ExtResource( 4 )]
+trigger_group = "Player"
+method_name = "win"
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
+position = Vector2( 438, -173 )
+
+[node name="Bird" parent="." instance=ExtResource( 6 )]
+position = Vector2( 70, 50 )
+direction = 0
+
+[node name="MainCamera" parent="." instance=ExtResource( 7 )]
+position = Vector2( 300, 0 )
+player_path = NodePath("../../ScrollerScratchpad/Player")
+
+[node name="LoseTimer" type="Timer" parent="."]
+
+[node name="BasicBlock" parent="." instance=ExtResource( 8 )]
+position = Vector2( 40, -14 )
+
+[node name="BasicBlock5" parent="." instance=ExtResource( 8 )]
+position = Vector2( 160, -14 )
+
+[node name="BasicBlock9" parent="." instance=ExtResource( 8 )]
+position = Vector2( 250, -50 )
+
+[node name="BasicBlock3" parent="." instance=ExtResource( 8 )]
+position = Vector2( 100, -14 )
+
+[node name="BasicBlock8" parent="." instance=ExtResource( 8 )]
+position = Vector2( 220, -14 )
+
+[node name="BasicBlock12" parent="." instance=ExtResource( 8 )]
+position = Vector2( 310, -50 )
+
+[node name="BasicBlock2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 70, -14 )
+
+[node name="BasicBlock6" parent="." instance=ExtResource( 8 )]
+position = Vector2( 190, -14 )
+
+[node name="BasicBlock10" parent="." instance=ExtResource( 8 )]
+position = Vector2( 280, -50 )
+
+[node name="BasicBlock4" parent="." instance=ExtResource( 8 )]
+position = Vector2( 130, -14 )
+
+[node name="BasicBlock7" parent="." instance=ExtResource( 8 )]
+position = Vector2( 250, -14 )
+
+[node name="BasicBlock11" parent="." instance=ExtResource( 8 )]
+position = Vector2( 340, -50 )
+[connection signal="lose" from="Player" to="." method="_on_Player_lose"]
+[connection signal="win" from="Player" to="." method="_on_Player_win"]
+[connection signal="timeout" from="LoseTimer" to="." method="_on_Timer_timeout"]

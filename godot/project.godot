@@ -19,6 +19,10 @@ config/name="Highschool"
 run/main_scene="res://Node2D.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+ScreenEffects="*res://components/ScreenEffects.tscn"
+
 [display]
 
 window/size/width=600
