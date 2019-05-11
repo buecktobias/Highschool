@@ -8,12 +8,14 @@ extends Node2D
 const RANDOM_WALL = preload("res://RandomWall.tscn")
 const BIRD = preload("res://Birb.tscn")
 const BEE = preload("res://Bee.tscn")
+export (NodePath) var player_path
 const ELEMENTS = [RANDOM_WALL, RANDOM_WALL, RANDOM_WALL, BIRD, BIRD, BEE, BEE]
 const SCREEN_WIDTH = 600
 const GAP_BETWEEN_STAGES = 200
 const LEVEL_SIZE = 100_000
 func _ready():
 	randomize()
+	var player = get_node(player_path)
 	var screen_width = OS.get_screen_size(OS.get_current_screen()).x
 	var window_width = OS.get_window_size().x
 	OS.set_window_position(Vector2((screen_width / 2) - (window_width / 2),0))
@@ -21,6 +23,7 @@ func _ready():
 		var x = int(round(rand_range(0,SCREEN_WIDTH)))
 		var random_element = ELEMENTS[round(rand_range(0,len(ELEMENTS)-1))]
 		var object = random_element.instance()
+		object.player = player
 		object.position.x = x
 		object.position.y = y
 		self.add_child(object)
