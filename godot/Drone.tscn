@@ -4,11 +4,10 @@
 [ext_resource path="res://img/Drone_01.png" type="Texture" id=2]
 [ext_resource path="res://snd/FX/FX loop drone_01.wav" type="AudioStream" id=3]
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 6, 10 )
 
-[sub_resource type="Animation" id=1]
-resource_name = "std"
+[sub_resource type="Animation" id=2]
 length = 0.48
 loop = true
 step = 0.12
@@ -30,7 +29,7 @@ scale = Vector2( 3, 3 )
 
 [node name="CollisionShape2D" parent="." index="0"]
 visible = true
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="." index="2"]
 position = Vector2( 0, -2 )
@@ -39,7 +38,7 @@ vframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 autoplay = "std"
-anims/std = SubResource( 1 )
+anims/std = SubResource( 2 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
 stream = ExtResource( 3 )
