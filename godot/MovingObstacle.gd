@@ -6,13 +6,15 @@ export (float) var min_speed = 50
 export (float) var max_speed = 250
 var speed
 export (DIRECTION) var direction = DIRECTION.RIGHT
-
+var player
 func _ready():
 	speed = rand_range(min_speed, max_speed)
 	if direction == DIRECTION.LEFT:
 		scale.x = -4
 
 func _process(delta):
+	if player.position.y - 210  > self.position.y:
+		self.queue_free()
 	match direction:
 		DIRECTION.LEFT:
 			position.x -= delta*speed
