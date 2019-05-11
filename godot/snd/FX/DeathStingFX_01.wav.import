@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/DeathStingFX_01.wav-76e648c45565b8b884500eea798faa5d.sample"
+
+[deps]
+
+source_file="res://snd/FX/DeathStingFX_01.wav"
+dest_files=[ "res://.import/DeathStingFX_01.wav-76e648c45565b8b884500eea798faa5d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
