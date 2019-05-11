@@ -40,8 +40,9 @@ func calculate_chances(y_position):
 	var smaller_y = (y_position + 500) / 1_000
 	
 	var elements_num = []
+	var power = 1
 	for i in range(len(ELEMENTS)):
-		var power = i + 1
+		power += 0.2
 		var num = pow(smaller_y, power)
 		elements_num.append(num)
 	var sum_elemts_num = sum(elements_num)
