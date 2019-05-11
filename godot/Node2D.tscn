@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Node2D.gd" type="Script" id=1]
 [ext_resource path="res://SideWall.tscn" type="PackedScene" id=2]
 [ext_resource path="res://snd/FX/High School Gameplay music.wav" type="AudioStream" id=3]
 [ext_resource path="res://MainCamera.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://ParallaxBackground.tscn" type="PackedScene" id=6]
 
 [node name="MainScreen" type="Node2D"]
 script = ExtResource( 1 )
@@ -29,6 +30,9 @@ player_path = NodePath("../Player")
 
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 438, -173 )
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 6 )]
+camera_path = NodePath("../MainCamera")
 [connection signal="timeout" from="LoseTimer" to="." method="_on_LoseTimer_timeout"]
 [connection signal="lose" from="Player" to="." method="_on_Player_lose"]
 [connection signal="win" from="Player" to="." method="_on_Player_win"]

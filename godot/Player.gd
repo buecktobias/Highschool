@@ -35,7 +35,8 @@ const ROT = PI/10
 func _process(delta):
 	if not _is_dead:
 		var movement = Vector2()
-		movement.y += y_max_speed
+		y_speed += delta * y_acceleration
+		movement.y += y_speed
 		if Input.is_action_pressed("ui_left"):
 			movement.x -= x_speed
 			$Tween.stop_all()
