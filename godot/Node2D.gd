@@ -13,6 +13,7 @@ const SCREEN_WIDTH = 600
 const GAP_BETWEEN_STAGES = 200
 const LEVEL_SIZE = 100_000
 func _ready():
+	randomize()
 	var screen_width = OS.get_screen_size(OS.get_current_screen()).x
 	var window_width = OS.get_window_size().x
 	OS.set_window_position(Vector2((screen_width / 2) - (window_width / 2),0))

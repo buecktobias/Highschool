@@ -9,7 +9,7 @@ const BLOCK_SIZE = 8
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var amount_of_blocks = int(round(rand_range(4, 10)))
+	var amount_of_blocks = int(round(rand_range(4, 9)))
 	for i in range(amount_of_blocks):
 		var block = BLOCK.instance()
 		block.position.y = 0

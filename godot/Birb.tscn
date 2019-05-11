@@ -25,6 +25,8 @@ tracks/0/keys = {
 
 [node name="Bird" instance=ExtResource( 1 )]
 scale = Vector2( 4, 4 )
+min_speed = 100.0
+max_speed = 200.0
 
 [node name="CollisionShape2D" parent="." index="0"]
 visible = true
