@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Birdcall1_01.wav-2bcd1867eeb405a30423ed0d554c383c.sample"
+
+[deps]
+
+source_file="res://snd/FX/Birdcall1_01.wav"
+dest_files=[ "res://.import/Birdcall1_01.wav-2bcd1867eeb405a30423ed0d554c383c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
