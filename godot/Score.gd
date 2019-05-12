@@ -3,7 +3,7 @@ extends RichTextLabel
 export (NodePath) var player_path
 var player
 
-const format_string = "[b][color=yellow]%s[/color][/b]"
+const format_string = "[b][color=#FFFF40]%s[/color][/b]"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -11,4 +11,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	bbcode_text = format_string % str(300 + round(player.position.y))
+	bbcode_text = format_string % str(450 + round(player.position.y))
