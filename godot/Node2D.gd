@@ -98,6 +98,8 @@ func _ready():
 	OS.set_window_position(Vector2((screen_width / 2) - (window_width / 2), 0))
 	for y in range(0, GAP_BETWEEN_STAGES * 5, GAP_BETWEEN_STAGES):
 		spawn_random_element(y)
+	$MainCamera/Tween.interpolate_property($MainCamera/ColorRect, "modulate", Color(0, 0, 0, 1), Color(0, 0, 0, 0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$MainCamera/Tween.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -109,6 +111,8 @@ func _process(delta):
 func _on_Player_lose():
 	$LoseTimer.wait_time = 1
 	$LoseTimer.start()
+	$AudioStreamPlayer.stop()
+	PlayerData.set("current_score", 400.0 + round(player.position.y))
 
 
 func _on_Player_win():
@@ -116,4 +120,6 @@ func _on_Player_win():
 
 
 func _on_LoseTimer_timeout():
-	get_tree().change_scene("LoseScreen.tscn")
+	#get_tree().change_scene("LoseScreen.tscn")
+	var l = preload("res://LoseScreen.tscn").instance()
+	$MainCamera.add_child(l)
