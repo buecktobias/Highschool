@@ -43,7 +43,7 @@ func get_random_element():
 	
 	var element_values = []
 	for i in range(len(ELEMENTS)):
-		var power = 1 + (i * 0.4)
+		var power = 1 + (i * 1)
 		var element_value = pow(function_value, power)
 		element_values.append(element_value)
 	
@@ -62,14 +62,14 @@ func get_random_element():
 func spawn_random_element(y):
 	var x = int(round(rand_range(0, SCREEN_WIDTH)))
 	# chance for beans
-	if randi() % 100 < 50:
+	if randi() % 100 < 30:
 		var beans = BEANS.instance()
 		beans.player = player
 		beans.position.x = int(floor(x + 300)) % SCREEN_WIDTH
 		beans.position.y = y + GAP_BETWEEN_STAGES / 2
 		self.add_child(beans)
 	# increasing chance for a penguin
-	if rand_range(0, 1) < 0.1 + (player.position.y / LEVEL_SIZE / 2):
+	if rand_range(0, 1) < player.position.y / LEVEL_SIZE:
 		var penguin = PENGUIN.instance()
 		penguin.player = player
 		penguin.position.x = x
