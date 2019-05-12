@@ -14,12 +14,18 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("cont"):
 		img += 1
+		var c = get_children()
 		if img >= NUM_IMGS:
-			get_tree().change_scene("res://MainMenu.tscn")
+			$ColorRect.queue_free()
+			$Tween.interpolate_property(c[img], "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+			$Tween.interpolate_property(c[img], "scale", Vector2(1, 1), Vector2(1.5, 1.5), .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+			$Tween.start()
+			$Timer.start()
+			$AudioStreamPlayer.play()
 		else:
-			var c = get_children()
-			$Tween.interpolate_property(c[img-1], "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-			$Tween.interpolate_property(c[img-1], "scale", Vector2(1, 1), Vector2(1.5, 1.5), .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
-			$Tween.interpolate_property(c[img], "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, Tween.TRANS_LINEAR, Tween.EASE_IN, .5)
-			$Tween.interpolate_property(c[img], "scale", Vector2(1.5, 1.5), Vector2(1, 1), .5, Tween.TRANS_LINEAR, Tween.EASE_IN, .5)
+			$Tween.interpolate_property(c[img], "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+			$Tween.interpolate_property(c[img], "scale", Vector2(1, 1), Vector2(1.5, 1.5), .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
+			$Tween.interpolate_property(c[img+1], "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), .5, Tween.TRANS_LINEAR, Tween.EASE_IN, .5)
+			$Tween.interpolate_property(c[img+1], "scale", Vector2(1.5, 1.5), Vector2(1, 1), .5, Tween.TRANS_LINEAR, Tween.EASE_IN, .5)
+			$Tween.start()
 			$AudioStreamPlayer.play()

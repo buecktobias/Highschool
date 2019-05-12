@@ -27,5 +27,10 @@ func _on_Tween_tween_completed(object, key):
 
 
 func _on_Button_pressed():
+	$ResetPlayer.play()
 	PlayerData.set("high_score", 0)
 	$ScoreDisplay.display()
+
+
+func _on_Button_mouse_entered():
+	$PlayButton/HighlightPlayer.play()
