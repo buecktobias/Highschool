@@ -11,4 +11,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	bbcode_text = format_string % str(450 + round(player.position.y))
+	if player.position.y > -400:
+		bbcode_text = format_string % str(400 + round(player.position.y))
