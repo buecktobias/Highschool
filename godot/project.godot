@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 ScreenEffects="*res://components/ScreenEffects.tscn"
+PlayerData="*res://components/PlayerData.tscn"
 
 [display]
 
