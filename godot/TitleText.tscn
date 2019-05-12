@@ -138,6 +138,7 @@ tracks/9/keys = {
 
 [node name="TitleText" type="Node2D"]
 position = Vector2( -40, -20 )
+scale = Vector2( 3, 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -199,4 +200,5 @@ vframes = 10
 frame = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "std"
 anims/std = SubResource( 1 )
