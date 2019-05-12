@@ -13,6 +13,8 @@ const PENGUIN = preload("res://Penguin.tscn")
 
 const BEANS = preload("res://CanOfBeans.tscn")
 
+const CLOUD = preload("res://Cloud.tscn")
+
 export (NodePath) var player_path
 const ELEMENTS = [BEE, BIRD, DRONE]
 const SCREEN_WIDTH = 600
@@ -90,6 +92,16 @@ func spawn_random_element(y):
 	last_player_position_obstacle_added_y += GAP_BETWEEN_STAGES
 
 
+func spawn_clouds():
+	for i in range(8):
+		var cloud = CLOUD.instance()
+		cloud.player = player
+		var random_scale = rand_range(0.2, 0.8)
+		cloud.scale.x = random_scale
+		cloud.scale.y = random_scale
+		self.add_child(cloud)
+
+
 func _ready():
 	randomize()
 	player = get_node(player_path)
@@ -98,6 +110,7 @@ func _ready():
 	OS.set_window_position(Vector2((screen_width / 2) - (window_width / 2), 0))
 	for y in range(0, GAP_BETWEEN_STAGES * 5, GAP_BETWEEN_STAGES):
 		spawn_random_element(y)
+	spawn_clouds()
 	$MainCamera/Tween.interpolate_property($MainCamera/ColorRect, "modulate", Color(0, 0, 0, 1), Color(0, 0, 0, 0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$MainCamera/Tween.start()
 
