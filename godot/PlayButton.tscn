@@ -1,0 +1,91 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://PlayButton.gd" type="Script" id=1]
+[ext_resource path="res://img/Play_Button_01_normal.png" type="Texture" id=2]
+[ext_resource path="res://img/Play_Button_01_hovered.png" type="Texture" id=3]
+[ext_resource path="res://img/Play_Button_01_clicked.png" type="Texture" id=4]
+[ext_resource path="res://snd/FX/UI highlight_01.wav" type="AudioStream" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "std"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Normal:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Hovered:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Pressed:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="PlayButton" type="Button"]
+margin_left = 230.0
+margin_top = 364.0
+margin_right = 366.0
+margin_bottom = 416.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Normal" type="Sprite" parent="."]
+position = Vector2( 64, 26 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 2 )
+vframes = 4
+
+[node name="Hovered" type="Sprite" parent="."]
+visible = false
+position = Vector2( 64, 26 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 3 )
+vframes = 4
+
+[node name="Pressed" type="Sprite" parent="."]
+visible = false
+position = Vector2( 64, 26 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 4 )
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "std"
+anims/std = SubResource( 1 )
+
+[node name="HighlightPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -25.0
+[connection signal="button_down" from="." to="." method="_on_PlayButton_button_down"]
+[connection signal="button_up" from="." to="." method="_on_PlayButton_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_PlayButton_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_PlayButton_mouse_exited"]

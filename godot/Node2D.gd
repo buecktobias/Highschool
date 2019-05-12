@@ -43,7 +43,7 @@ func get_random_element():
 	
 	var element_values = []
 	for i in range(len(ELEMENTS)):
-		var power = 1 + (i * 0.4)
+		var power = 1 + (i * 1)
 		var element_value = pow(function_value, power)
 		element_values.append(element_value)
 	
@@ -62,14 +62,14 @@ func get_random_element():
 func spawn_random_element(y):
 	var x = int(round(rand_range(0, SCREEN_WIDTH)))
 	# chance for beans
-	if randi() % 100 < 50:
+	if randi() % 100 < 30:
 		var beans = BEANS.instance()
 		beans.player = player
 		beans.position.x = int(floor(x + 300)) % SCREEN_WIDTH
 		beans.position.y = y + GAP_BETWEEN_STAGES / 2
 		self.add_child(beans)
 	# increasing chance for a penguin
-	if rand_range(0, 1) < 0.1 + (player.position.y / LEVEL_SIZE / 2):
+	if rand_range(0, 1) < player.position.y / LEVEL_SIZE:
 		var penguin = PENGUIN.instance()
 		penguin.player = player
 		penguin.position.x = x
@@ -98,6 +98,8 @@ func _ready():
 	OS.set_window_position(Vector2((screen_width / 2) - (window_width / 2), 0))
 	for y in range(0, GAP_BETWEEN_STAGES * 5, GAP_BETWEEN_STAGES):
 		spawn_random_element(y)
+	$MainCamera/Tween.interpolate_property($MainCamera/ColorRect, "modulate", Color(0, 0, 0, 1), Color(0, 0, 0, 0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+	$MainCamera/Tween.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -109,6 +111,8 @@ func _process(delta):
 func _on_Player_lose():
 	$LoseTimer.wait_time = 1
 	$LoseTimer.start()
+	$AudioStreamPlayer.stop()
+	PlayerData.set("current_score", 400.0 + round(player.position.y))
 
 
 func _on_Player_win():
@@ -116,4 +120,6 @@ func _on_Player_win():
 
 
 func _on_LoseTimer_timeout():
-	get_tree().change_scene("LoseScreen.tscn")
+	#get_tree().change_scene("LoseScreen.tscn")
+	var l = preload("res://LoseScreen.tscn").instance()
+	$MainCamera.add_child(l)
