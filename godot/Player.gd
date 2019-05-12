@@ -14,8 +14,8 @@ var y_max_speed = 80
 var x_speed = 500
 var _is_dead = false
 
-var max_extra_jumps = 1
-var extra_jumps = 1
+var max_extra_jumps = 2
+var extra_jumps = 2
 
 func _ready():
 	call_deferred("emit_signal", "jumps_init", extra_jumps, max_extra_jumps)
@@ -37,6 +37,10 @@ func win():
 	#get_tree().change_scene("WinScreen.tscn")
 	emit_signal("win")
 
+func can_collected():
+	extra_jumps = min(extra_jumps+1, max_extra_jumps)
+	emit_signal("jumps_update", extra_jumps, max_extra_jumps)
+
 const ROT = PI/10
 
 func _process(delta):
@@ -49,7 +53,10 @@ func _process(delta):
 				$JumpTween.interpolate_property($AnimationPlayer, "playback_speed", 10, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 				$JumpTween.start()
 				extra_jumps -= 1
+				$FartPlayer.play()
 				emit_signal("jumps_update", extra_jumps, max_extra_jumps)
+			else:
+				$NoAmmoPlayer.play()
 		var movement = Vector2()
 		movement.y += y_speed
 		var half_width = self.scale.x * 32 / 2

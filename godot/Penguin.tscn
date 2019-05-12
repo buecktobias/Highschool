@@ -1,0 +1,53 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Penguin.gd" type="Script" id=1]
+[ext_resource path="res://img/Rocket_Penguin_01.png" type="Texture" id=2]
+[ext_resource path="res://components/CollisionTrigger.tscn" type="PackedScene" id=3]
+[ext_resource path="res://snd/FX/FXLoopRocket_01.wav" type="AudioStream" id=4]
+
+[sub_resource type="CapsuleShape2D" id=1]
+
+[sub_resource type="Animation" id=2]
+resource_name = "std"
+length = 0.48
+loop = true
+step = 0.12
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.12, 0.24, 0.36 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[node name="Penguin" type="Area2D"]
+scale = Vector2( 3, 3 )
+script = ExtResource( 1 )
+min_speed = 200.0
+max_speed = 400.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+vframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "std"
+anims/std = SubResource( 2 )
+
+[node name="CollisionTrigger" parent="." instance=ExtResource( 3 )]
+trigger_group = "Player"
+method_name = "lose"
+pass_self = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -30.0
+autoplay = true

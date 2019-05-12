@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://MainMenu.gd" type="Script" id=1]
+[ext_resource path="res://ParallaxBackground.tscn" type="PackedScene" id=2]
+[ext_resource path="res://img/Can_of_Beans_01_active.png" type="Texture" id=3]
+[ext_resource path="res://img/Can_of_Beans_01_inactive.png" type="Texture" id=4]
+[ext_resource path="res://TitleText.tscn" type="PackedScene" id=5]
+
+[node name="MainMenu" type="Node"]
+script = ExtResource( 1 )
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 2 )]
+offset = Vector2( 300, 400 )
+transform = Transform2D( 1, 0, 0, 1, 300, 400 )
+
+[node name="TextureButton" type="TextureButton" parent="."]
+margin_left = 278.0
+margin_top = 320.0
+margin_right = 318.0
+margin_bottom = 360.0
+rect_scale = Vector2( 3, 3 )
+texture_normal = ExtResource( 3 )
+texture_pressed = ExtResource( 4 )
+
+[node name="TitleText" parent="." instance=ExtResource( 5 )]
+position = Vector2( 170, 90 )
+[connection signal="pressed" from="TextureButton" to="." method="_on_TextureButton_pressed"]
