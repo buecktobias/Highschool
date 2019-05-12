@@ -43,7 +43,7 @@ position = Vector2( -250, 325 )
 subject = NodePath("../../Player")
 filled_element = NodePath("Filled")
 empty_element = NodePath("Empty")
-init_signal = "jumpsh_init"
+init_signal = "jumps_init"
 update_signal = "jumps_update"
 element_offset = 50.0
 
