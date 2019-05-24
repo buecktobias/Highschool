@@ -15,14 +15,21 @@ func _process(delta):
 	if Input.is_action_just_pressed("cont"):
 		img += 1
 		var c = get_children()
-		if img >= NUM_IMGS:
+		if img == NUM_IMGS:
 			$ColorRect.queue_free()
+			$Tween.stop_all()
+			c[img-1].modulate = Color(1, 1, 1, 0)
 			$Tween.interpolate_property(c[img], "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 			$Tween.interpolate_property(c[img], "scale", Vector2(1, 1), Vector2(1.5, 1.5), .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 			$Tween.start()
 			$Timer.start()
 			$AudioStreamPlayer.play()
+		elif img > NUM_IMGS:
+			pass
 		else:
+			$Tween.stop_all()
+			if img > 1:
+				c[img-1].modulate = Color(1, 1, 1, 0)
 			$Tween.interpolate_property(c[img], "modulate", Color(1, 1, 1, 1), Color(1, 1, 1, 0), .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 			$Tween.interpolate_property(c[img], "scale", Vector2(1, 1), Vector2(1.5, 1.5), .5, Tween.TRANS_LINEAR, Tween.EASE_IN)
 			$Tween.interpolate_property(c[img+1], "modulate", Color(1, 1, 1, 0), Color(1, 1, 1, 1), .5, Tween.TRANS_LINEAR, Tween.EASE_IN, .5)

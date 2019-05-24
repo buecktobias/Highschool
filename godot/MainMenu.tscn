@@ -15,7 +15,7 @@
 size = 48
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=2]
 size = 24
 font_data = ExtResource( 8 )
 
@@ -64,7 +64,7 @@ margin_left = 90.0
 margin_top = 460.0
 margin_right = 510.0
 margin_bottom = 520.0
-custom_fonts/bold_font = SubResource( 4 )
+custom_fonts/bold_font = SubResource( 2 )
 bbcode_enabled = true
 bbcode_text = "[b][color=#FF4040]Arrow keys to move,
 space to jump[/color][/b]"
@@ -101,6 +101,7 @@ __meta__ = {
 }
 
 [node name="Panels" parent="." instance=ExtResource( 10 )]
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_Button_mouse_entered"]
