@@ -59,7 +59,9 @@ hue_variation_random = 1.0
 
 [node name="BeanPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+volume_db = -13.0
 
 [node name="DeathTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_CanOfBeans_body_entered"]
 [connection signal="timeout" from="DeathTimer" to="." method="queue_free"]

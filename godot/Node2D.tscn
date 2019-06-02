@@ -24,7 +24,7 @@ player_path = NodePath("Player")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
-volume_db = -15.0
+volume_db = -10.0
 autoplay = true
 
 [node name="LoseTimer" type="Timer" parent="."]
@@ -109,6 +109,7 @@ custom_fonts/bold_font = SubResource( 1 )
 bbcode_enabled = true
 script = ExtResource( 10 )
 player_path = NodePath("../../Player")
+
 [connection signal="timeout" from="LoseTimer" to="." method="_on_LoseTimer_timeout"]
 [connection signal="lose" from="Player" to="." method="_on_Player_lose"]
 [connection signal="win" from="Player" to="." method="_on_Player_win"]

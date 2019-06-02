@@ -49,8 +49,9 @@ anims/std = SubResource( 2 )
 
 [node name="FartPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
-volume_db = 5.0
+volume_db = -5.0
 
 [node name="NoAmmoPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
 volume_db = -5.0
+

@@ -74,7 +74,7 @@ volume_db = -20.0
 
 [node name="HappyPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -10.0
+volume_db = -12.0
 
 [node name="HappyTween" type="Tween" parent="."]
 
@@ -120,6 +120,7 @@ __meta__ = {
 [node name="ResetPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 volume_db = -25.0
+
 [connection signal="pressed" from="PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_Tween_tween_completed"]
 [connection signal="tween_completed" from="HappyTween" to="." method="_on_HappyTween_tween_completed"]
