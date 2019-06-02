@@ -93,13 +93,31 @@ func spawn_random_element(y):
 
 
 func spawn_clouds():
-	for i in range(8):
+	var CLOUDS_PER_LAYER = 4
+	for i in range(CLOUDS_PER_LAYER):
 		var cloud = CLOUD.instance()
 		cloud.player = player
-		var random_scale = rand_range(0.2, 0.8)
+		var random_scale = rand_range(0.6, 1.0)
 		cloud.scale.x = random_scale
 		cloud.scale.y = random_scale
-		self.add_child(cloud)
+		#self.add_child(cloud)
+		$ParallaxBackground/CloudsLayer.add_child(cloud)
+	for i in range(CLOUDS_PER_LAYER):
+		var cloud = CLOUD.instance()
+		cloud.player = player
+		var random_scale = rand_range(0.6, 1.0)
+		cloud.scale.x = random_scale
+		cloud.scale.y = random_scale
+		#self.add_child(cloud)
+		$ParallaxBackground/CloudsLayer2.add_child(cloud)
+	for i in range(CLOUDS_PER_LAYER):
+		var cloud = CLOUD.instance()
+		cloud.player = player
+		var random_scale = rand_range(0.6, 1.0)
+		cloud.scale.x = random_scale
+		cloud.scale.y = random_scale
+		#self.add_child(cloud)
+		$ParallaxBackground/CloudsLayer3.add_child(cloud)
 
 
 func _ready():

@@ -11,4 +11,5 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if camera_path:
-		offset.y = 778.81*floor(camera.position.y/7788.1)
+		$SkyLayer.motion_offset.y = 778.81*(floor(camera.position.y/778.81*$SkyLayer.motion_scale.y)+.5)
+		$WallsLayer.motion_offset.y = 778.81*(floor(camera.position.y/778.81*$WallsLayer.motion_scale.y)+.5)

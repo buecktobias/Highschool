@@ -96,6 +96,18 @@ position = Vector2( 438, -450 )
 [node name="ParallaxBackground" parent="." instance=ExtResource( 8 )]
 camera_path = NodePath("../MainCamera")
 
+[node name="CloudsLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -1
+motion_scale = Vector2( 0, 0.15 )
+
+[node name="CloudsLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -1
+motion_scale = Vector2( 0, 0.2 )
+
+[node name="CloudsLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+z_index = -1
+motion_scale = Vector2( 0, 0.25 )
+
 [node name="Node2D" type="Node2D" parent="."]
 z_index = 10
 
