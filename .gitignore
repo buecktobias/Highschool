@@ -1,2 +1,3 @@
 *.import
 godot/.import/*
+godot/export_presets.cfg
