@@ -27,8 +27,9 @@ PlayerData="*res://components/PlayerData.tscn"
 [display]
 
 window/size/width=600
-window/size/height=800
+window/size/height=400
 window/size/resizable=false
+window/handheld/orientation="portrait"
 
 [importer_defaults]
 

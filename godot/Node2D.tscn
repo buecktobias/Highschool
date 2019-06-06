@@ -90,6 +90,20 @@ margin_bottom = 400.0
 mouse_filter = 2
 color = Color( 0, 0, 0, 1 )
 
+[node name="ColorRect2" type="ColorRect" parent="MainCamera"]
+margin_left = -700.0
+margin_top = -410.0
+margin_right = -300.0
+margin_bottom = 410.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="ColorRect3" type="ColorRect" parent="MainCamera"]
+margin_left = 300.0
+margin_top = -410.0
+margin_right = 700.0
+margin_bottom = 410.0
+color = Color( 0, 0, 0, 1 )
+
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 438, -450 )
 

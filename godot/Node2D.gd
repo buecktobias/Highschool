@@ -131,6 +131,9 @@ func _ready():
 	spawn_clouds()
 	$MainCamera/Tween.interpolate_property($MainCamera/ColorRect, "modulate", Color(0, 0, 0, 1), Color(0, 0, 0, 0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$MainCamera/Tween.start()
+	scale.x = float(get_viewport().size.y)/800
+	scale.y = float(get_viewport().size.y)/800
+	$ParallaxBackground.prepare_scale_camera()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

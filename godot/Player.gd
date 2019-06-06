@@ -42,6 +42,7 @@ func can_collected():
 	emit_signal("jumps_update", extra_jumps, max_extra_jumps)
 
 const ROT = PI/10
+const TILT_EPSILON = .5
 
 func _process(delta):
 	if not _is_dead:
@@ -62,24 +63,22 @@ func _process(delta):
 		var half_width = self.scale.x * 32 / 2
 		# hard coded adjustment
 		half_width /= 3
-		if Input.is_action_pressed("ui_left"):
+		if Input.is_action_pressed("ui_left") or Input.get_accelerometer().x < -TILT_EPSILON:
 			$Tween.stop_all()
 			$Tween.interpolate_property(self, "rotation", rotation, -ROT, .07, Tween.TRANS_LINEAR, Tween.EASE_IN)
 			$Tween.start()
 			movement.x -= x_speed
 			if position.x + (delta * movement.x) + half_width < 0:
 				position.x = window_width + half_width
-				#return  # to prevent move_and_slide
-		elif Input.is_action_pressed("ui_right"):
+		elif Input.is_action_pressed("ui_right") or Input.get_accelerometer().x > TILT_EPSILON:
 			$Tween.stop_all()
 			$Tween.interpolate_property(self, "rotation", rotation, ROT, .07, Tween.TRANS_LINEAR, Tween.EASE_IN)
 			$Tween.start()
 			movement.x += x_speed
 			if position.x + (delta * movement.x) - half_width > window_width:
 				position.x = -half_width
-				#return  # to prevent move_and_slide
 		else:
 			$Tween.stop_all()
 			$Tween.interpolate_property(self, "rotation", rotation, 0, .07, Tween.TRANS_LINEAR, Tween.EASE_IN)
 			$Tween.start()
-		move_and_slide(movement)
+		move_and_slide(movement*get_parent().scale.x)
