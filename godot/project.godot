@@ -27,7 +27,7 @@ PlayerData="*res://components/PlayerData.tscn"
 [display]
 
 window/size/width=600
-window/size/height=400
+window/size/height=800
 window/size/resizable=false
 window/handheld/orientation="portrait"
 
@@ -69,4 +69,5 @@ cont={
 
 [rendering]
 
+environment/default_clear_color=Color( 0, 0, 0, 1 )
 environment/default_environment="res://default_env.tres"

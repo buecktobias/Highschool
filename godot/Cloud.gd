@@ -15,8 +15,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	var factor = min(float(get_viewport().size.y)/800, float(get_viewport().size.x)/600)
 	self.position.x += delta * x_speed
-	if self.position.y < -50:
+	if get_global_transform_with_canvas().origin.y < -50*factor + (get_viewport().size.y-800*factor)/2:
 		self.position.y += 900
 		self.position.x = rand_range(-300, 300)
 		x_speed = rand_range(-2, 2)

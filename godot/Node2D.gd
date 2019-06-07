@@ -119,6 +119,11 @@ func spawn_clouds():
 		#self.add_child(cloud)
 		$ParallaxBackground/CloudsLayer3.add_child(cloud)
 
+func _fit_to_screen():
+	var factor = min(float(get_viewport().size.y)/800, float(get_viewport().size.x)/600)
+	scale.x = factor
+	scale.y = factor
+	$ParallaxBackground.prepare_scale_camera()
 
 func _ready():
 	randomize()
@@ -131,9 +136,8 @@ func _ready():
 	spawn_clouds()
 	$MainCamera/Tween.interpolate_property($MainCamera/ColorRect, "modulate", Color(0, 0, 0, 1), Color(0, 0, 0, 0), 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
 	$MainCamera/Tween.start()
-	scale.x = float(get_viewport().size.y)/800
-	scale.y = float(get_viewport().size.y)/800
-	$ParallaxBackground.prepare_scale_camera()
+	_fit_to_screen()
+	get_viewport().connect("size_changed", self, "_fit_to_screen")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

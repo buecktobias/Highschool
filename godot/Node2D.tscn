@@ -104,6 +104,20 @@ margin_right = 700.0
 margin_bottom = 410.0
 color = Color( 0, 0, 0, 1 )
 
+[node name="ColorRect4" type="ColorRect" parent="MainCamera"]
+margin_left = -700.0
+margin_top = -1200.0
+margin_right = 700.0
+margin_bottom = -400.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="ColorRect5" type="ColorRect" parent="MainCamera"]
+margin_left = -700.0
+margin_top = 400.0
+margin_right = 700.0
+margin_bottom = 1200.0
+color = Color( 0, 0, 0, 1 )
+
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 438, -450 )
 

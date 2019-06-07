@@ -42,9 +42,28 @@ func can_collected():
 	emit_signal("jumps_update", extra_jumps, max_extra_jumps)
 
 const ROT = PI/10
-const TILT_EPSILON = .5
+const TILT_EPSILON_START = .75
+const TILT_EPSILON_END = .45
+var is_tilting = false
+
+func _input(event):
+	if not _is_dead:
+		if event is InputEventScreenTouch and not event.is_pressed():
+			if extra_jumps > 0:
+				y_speed = -600
+				$JumpTween.interpolate_property($AnimationPlayer, "playback_speed", 10, 1, 1, Tween.TRANS_LINEAR, Tween.EASE_IN)
+				$JumpTween.start()
+				extra_jumps -= 1
+				$FartPlayer.play()
+				emit_signal("jumps_update", extra_jumps, max_extra_jumps)
+			else:
+				$NoAmmoPlayer.play()
 
 func _process(delta):
+	if abs(Input.get_accelerometer().x) > TILT_EPSILON_START:
+		is_tilting = true
+	elif abs(Input.get_accelerometer().x) < TILT_EPSILON_END:
+		is_tilting = false
 	if not _is_dead:
 		y_max_speed += delta * y_acceleration
 		y_speed = min(y_speed + delta*gravity, y_max_speed)
@@ -63,14 +82,14 @@ func _process(delta):
 		var half_width = self.scale.x * 32 / 2
 		# hard coded adjustment
 		half_width /= 3
-		if Input.is_action_pressed("ui_left") or Input.get_accelerometer().x < -TILT_EPSILON:
+		if Input.is_action_pressed("ui_left") or is_tilting and Input.get_accelerometer().x < -TILT_EPSILON_END:
 			$Tween.stop_all()
 			$Tween.interpolate_property(self, "rotation", rotation, -ROT, .07, Tween.TRANS_LINEAR, Tween.EASE_IN)
 			$Tween.start()
 			movement.x -= x_speed
 			if position.x + (delta * movement.x) + half_width < 0:
 				position.x = window_width + half_width
-		elif Input.is_action_pressed("ui_right") or Input.get_accelerometer().x > TILT_EPSILON:
+		elif Input.is_action_pressed("ui_right") or is_tilting and Input.get_accelerometer().x > TILT_EPSILON_END:
 			$Tween.stop_all()
 			$Tween.interpolate_property(self, "rotation", rotation, ROT, .07, Tween.TRANS_LINEAR, Tween.EASE_IN)
 			$Tween.start()

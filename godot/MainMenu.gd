@@ -4,12 +4,18 @@ extends Node2D
 # var a = 2
 # var b = "text"
 
+func _fit_to_screen():
+	var factor = min(float(get_viewport().size.y)/800, float(get_viewport().size.x)/600)
+	scale.x = factor
+	scale.y = factor
+	position.x = float(get_viewport().size.x - 600*scale.x)/2
+	position.y = float(get_viewport().size.y - 800*scale.x)/2
+	$ParallaxBackground.prepare_scale_no_camera()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	scale.x = float(get_viewport().size.y)/800
-	scale.y = float(get_viewport().size.y)/800
-	position.x = float(get_viewport().size.x - 600*scale.x)/2
-	$ParallaxBackground.prepare_scale_no_camera()
+	_fit_to_screen()
+	get_viewport().connect("size_changed", self, "_fit_to_screen")
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
