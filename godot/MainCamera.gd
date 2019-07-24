@@ -16,4 +16,4 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	position.y = max(player.position.y + offset_to_player, position.y)
-	score.rect_position.y = position.y - 385
+	score.rect_position.y = position.y - 385  # hard-coded..

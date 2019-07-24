@@ -18,6 +18,9 @@ var max_extra_jumps = 2
 var extra_jumps = 2
 
 func _ready():
+	var viewport_size = get_viewport().size
+	position.x = 300
+	position.y = -(float(viewport_size.y - 800) / 2)
 	call_deferred("emit_signal", "jumps_init", extra_jumps, max_extra_jumps)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.	
